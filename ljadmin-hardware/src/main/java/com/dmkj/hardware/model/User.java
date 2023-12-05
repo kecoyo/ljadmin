@@ -1,4 +1,4 @@
-package com.dmkj.ljadmin.hardware.model;
+package com.dmkj.hardware.model;
 
 public class User {
     /** 编号 */

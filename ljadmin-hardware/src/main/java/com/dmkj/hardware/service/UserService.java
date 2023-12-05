@@ -1,12 +1,12 @@
-package com.dmkj.ljadmin.hardware.service;
+package com.dmkj.hardware.service;
 
 import java.util.List;
 
+import com.dmkj.hardware.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dmkj.ljadmin.hardware.dao.UserDao;
-import com.dmkj.ljadmin.hardware.model.User;
+import com.dmkj.hardware.dao.UserDao;
 
 @Service
 public class UserService {

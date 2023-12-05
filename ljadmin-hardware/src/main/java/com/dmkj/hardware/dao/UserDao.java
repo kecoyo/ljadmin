@@ -1,8 +1,8 @@
-package com.dmkj.ljadmin.hardware.dao;
+package com.dmkj.hardware.dao;
 
 import java.util.List;
 
-import com.dmkj.ljadmin.hardware.model.User;
+import com.dmkj.hardware.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

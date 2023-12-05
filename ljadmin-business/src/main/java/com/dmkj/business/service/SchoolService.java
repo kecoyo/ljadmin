@@ -1,8 +1,7 @@
-package com.dmkj.ljadmin.business.service;
+package com.dmkj.business.service;
 
-import com.dmkj.ljadmin.business.dao.SchoolDao;
-import com.dmkj.ljadmin.business.model.SchoolInfo;
-import com.dmkj.ljadmin.business.service.SchoolService;
+import com.dmkj.business.dao.SchoolDao;
+import com.dmkj.business.model.SchoolInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
