@@ -1,0 +1,21 @@
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/eladmin?useSSL=false&characterEncoding=utf-8
+    username: eladmin
+    password: 123456
+
+mybatis:
+  type-aliases-package: com.dmkj.ljadmin.dao
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
