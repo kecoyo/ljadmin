@@ -7,13 +7,15 @@ import com.dmkj.ljadmin.hardware.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("api/hardware/user")
+@RequestMapping("/hardware/user")
 @Tag(name = "用户接口")
 public class UserController {
 
@@ -21,7 +23,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/hello")
-    @Operation(summary = "获取用户信息", description = "")
+    @Operation(summary = "获取用户信息", description = "", security = { @SecurityRequirement(name = "bearer-key") })
+    @PreAuthorize("hasAuthority('hardware:user:hello')")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
         return String.format("Hello %s!", name);
     }

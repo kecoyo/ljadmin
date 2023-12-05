@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/business/school")
+@RequestMapping("/business/school")
 @Tag(name = "学校接口")
 public class SchoolController {
 
