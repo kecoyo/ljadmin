@@ -7,17 +7,7 @@
     <groupId>com.dmkj</groupId>
     <artifactId>ljadmin</artifactId>
     <version>0.0.1</version>
-    <packaging>pom</packaging>
 
-    <name>ljadmin</name>
-    <description>ljadmin</description>
-
-    <modules>
-        <module>ljadmin-common</module>
-        <module>ljadmin-hardware</module>
-        <module>ljadmin-business</module>
-        <module>ljadmin-service</module>
-    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -27,12 +17,13 @@
     </parent>
 
     <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <skipTests>true</skipTests>
         <!-- <log4j2.version>2.17.0</log4j2.version>
         <logback.version>1.2.9</logback.version> -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>17</java.version>
-        <skipTests>true</skipTests>
         <!-- <log4jdbc.version>1.16</log4jdbc.version> -->
         <!-- <mybatis-spring-boot>1.2.0</mybatis-spring-boot>
         <mysql-connector>5.1.39</mysql-connector> -->
