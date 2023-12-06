@@ -2,6 +2,7 @@ package com.dmkj.ljadmin.business.model;
 
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,12 +10,17 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "学校信息")
 public class SchoolInfo {
+    @Schema(description = "学校ID")
     Integer id;
+    @Schema(description = "学校名称")
     String name;
     /** 学校属性 1省直属 2市直属 0无 */
+    @Schema(description = "学校属性 1省直属 2市直属 0无")
     String mode;
     /** 学校阶段 */
+    @Schema(description = "学校阶段")
     Integer phase;
     /** 学校属性 1省直属 2市直属 0无 */
     Integer property;

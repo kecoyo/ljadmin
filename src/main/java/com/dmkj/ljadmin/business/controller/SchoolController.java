@@ -2,13 +2,16 @@ package com.dmkj.ljadmin.business.controller;
 
 import com.dmkj.ljadmin.business.model.SchoolInfo;
 import com.dmkj.ljadmin.business.service.SchoolService;
+import com.dmkj.ljadmin.common.ResponseResult;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Min;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,21 +25,18 @@ public class SchoolController {
     private SchoolService schoolService;
 
     @RequestMapping(value = "/getSchoolList", method = RequestMethod.GET)
-    @Operation(summary = "获取学校列表", description = "")
-    public ResponseEntity<List<SchoolInfo>> getSchoolList() {
+    @Operation(summary = "获取学校列表")
+    public ResponseResult<List<SchoolInfo>> getSchoolList() {
         List<SchoolInfo> list = schoolService.getSchoolList();
-        return new ResponseEntity<List<SchoolInfo>>(list, HttpStatus.OK);
+        return ResponseResult.success(list);
     }
 
     @RequestMapping(value = "/getSchoolInfo", method = RequestMethod.GET)
-    @Operation(summary = "获取学校信息", description = "")
-    // @ApiResponses({
-    // @ApiResponse(code = 200, message = "请求成功", response = SchoolInfo.class),
-    // @ApiResponse(code = 404, message = "用户不存在")
-    // })
-    public ResponseEntity<SchoolInfo> getSchoolInfo(@RequestParam("id") Integer id) {
+    @Operation(summary = "获取学校信息")
+    public ResponseResult<SchoolInfo> getSchoolInfo(
+            @Validated @RequestParam("id") @Min(value = 1L, message = "学校ID必须大于0") Integer id) {
         SchoolInfo schoolInfo = schoolService.getSchoolInfo(id);
-        return new ResponseEntity<>(schoolInfo, HttpStatus.OK);
+        return ResponseResult.success(schoolInfo);
     }
 
 }
