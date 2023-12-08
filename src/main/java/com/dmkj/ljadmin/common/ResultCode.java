@@ -9,6 +9,7 @@ import lombok.Getter;
 public enum ResultCode {
 
     SUCCESS(0, "操作成功"),
+    FAIL(1, "操作失败"),
 
     CREATED(201, "对象创建成功"),
     ACCEPTED(202, "请求已经被接受"),
@@ -28,6 +29,9 @@ public enum ResultCode {
 
     ERROR(500, "系统内部错误"),
     NOT_IMPLEMENTED(501, "接口未实现"),
+
+    SERVICE_CALL_ERROR(1001, "服务调用异常"),
+    SERVICE_CALL_FAIL(1002, "服务调用失败"),
 
     WARN(601, "系统警告消息");
 

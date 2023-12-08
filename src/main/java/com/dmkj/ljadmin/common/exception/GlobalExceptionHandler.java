@@ -1,8 +1,10 @@
-package com.dmkj.ljadmin.common;
+package com.dmkj.ljadmin.common.exception;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dmkj.ljadmin.common.ResponseResult;
+import com.dmkj.ljadmin.common.ResultCode;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,7 +25,13 @@ public class GlobalExceptionHandler {
         return ResponseResult.fail(ResultCode.BAD_REQUEST.getCode(), ResultCode.BAD_REQUEST.getMessage(), errorMsgs);
     }
 
-    // 处理所有接口数据异常
+    // 处理所有接口异常
+    @ExceptionHandler(ApiException.class)
+    public ResponseResult<Object> handleApiException(ApiException e) {
+        return ResponseResult.fail(e.getCode(), e.getMessage());
+    }
+
+    // 处理所有未知异常
     @ExceptionHandler(Exception.class)
     public ResponseResult<Object> handleException(Exception e) {
         return ResponseResult.fail(ResultCode.ERROR.getCode(), ResultCode.ERROR.getMessage(),

@@ -1,7 +1,7 @@
 package com.dmkj.ljadmin.business.service;
 
-import com.dmkj.ljadmin.business.dao.SchoolDao;
-import com.dmkj.ljadmin.business.model.SchoolInfo;
+import com.dmkj.ljadmin.business.mapper.SchoolMapper;
+import com.dmkj.ljadmin.business.domain.SchoolInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class SchoolService {
 
     @Autowired
-    private SchoolDao schoolDao;
+    private SchoolMapper schoolMapper;
 
     public List<SchoolInfo> getSchoolList() {
         Integer province = 32;
@@ -21,10 +21,10 @@ public class SchoolService {
         String name = "";
         Integer pageIndex = 1;
         Integer pageSize = 10;
-        return schoolDao.getSchoolList(province, city, county, phase, name, pageIndex, pageSize);
+        return schoolMapper.getSchoolList(province, city, county, phase, name, pageIndex, pageSize);
     }
 
     public SchoolInfo getSchoolInfo(Integer id) {
-        return schoolDao.getSchoolInfo(id);
+        return schoolMapper.getSchoolInfo(id);
     }
 }

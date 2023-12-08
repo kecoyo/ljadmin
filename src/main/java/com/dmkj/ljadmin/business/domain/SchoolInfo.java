@@ -1,4 +1,4 @@
-package com.dmkj.ljadmin.business.model;
+package com.dmkj.ljadmin.business.domain;
 
 import java.util.Date;
 

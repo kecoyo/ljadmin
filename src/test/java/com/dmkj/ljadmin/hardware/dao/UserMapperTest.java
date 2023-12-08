@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.dmkj.ljadmin.hardware.domain.User;
 import com.dmkj.ljadmin.hardware.mapper.UserMapper;
+import com.dmkj.ljadmin.hardware.domain.User;
 
 @SpringBootTest
 public class UserMapperTest {

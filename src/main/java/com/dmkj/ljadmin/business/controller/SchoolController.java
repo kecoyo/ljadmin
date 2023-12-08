@@ -1,6 +1,6 @@
 package com.dmkj.ljadmin.business.controller;
 
-import com.dmkj.ljadmin.business.model.SchoolInfo;
+import com.dmkj.ljadmin.business.domain.SchoolInfo;
 import com.dmkj.ljadmin.business.service.SchoolService;
 import com.dmkj.ljadmin.common.ResponseResult;
 
@@ -9,8 +9,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Min;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

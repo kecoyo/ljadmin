@@ -3,60 +3,79 @@ package com.dmkj.ljadmin.hardware.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dmkj.ljadmin.common.ResponseResult;
+import com.dmkj.ljadmin.common.ResultCode;
+import com.dmkj.ljadmin.common.exception.ApiException;
 import com.dmkj.ljadmin.hardware.domain.User;
+import com.dmkj.ljadmin.hardware.domain.UserAddBody;
+import com.dmkj.ljadmin.hardware.domain.UserEditBody;
 import com.dmkj.ljadmin.hardware.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 @RequestMapping("/hardware/user")
-@Tag(name = "用户接口")
-@Validated
+@Tag(name = "用户管理")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/hello")
-    @Operation(summary = "获取用户信息", description = "", security = { @SecurityRequirement(name = "bearer-key") })
-    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return String.format("Hello %s!", name);
-    }
-
-    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
-    @Operation(summary = "获取用户列表", description = "")
-    public ResponseResult<List<User>> findAll() {
+    @Operation(summary = "查询用户列表")
+    @PreAuthorize("@el.check('user:list')")
+    @GetMapping(value = "/queryUserList")
+    public ResponseResult<List<User>> queryUserList() {
         List<User> list = userService.queryUserList();
         return ResponseResult.success(list);
     }
 
-    @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
-    @Operation(summary = "获取用户列表", description = "")
-    public ResponseResult<User> getUserInfo(@RequestParam(value = "userid") int userid) {
-        User user = userService.getUserInfo(userid);
+    @Operation(summary = "获取用户信息")
+    @GetMapping(value = "/{userId}")
+    public ResponseResult<User> getUserInfo(@Parameter @PathVariable(value = "userId") int userId) {
+        User user = userService.getUserInfo(userId);
+        if (user == null) {
+            return ResponseResult.fail(ResultCode.NOT_FOUND.getCode(), "用户不存在");
+        }
         return ResponseResult.success(user);
     }
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     @Operation(summary = "新增用户")
-    public ResponseResult<Integer> addUser(@Valid @RequestBody User user) {
-        log.info("[createUser][body: {}]", user);
-        int rowCnt = userService.addUser(user);
+    // @PreAuthorize("@el.check('user:add')")
+    @PostMapping(value = "/addUser")
+    public ResponseResult<Integer> addUser(@Validated @RequestBody UserAddBody userBody) throws Exception {
+        log.info("[addUser][user: {}]", userBody);
+        int userId = userService.addUser(userBody);
+        return ResponseResult.success(userId);
+    }
+
+    @Operation(summary = "修改用户")
+    @PreAuthorize("@el.check('user:edit')")
+    @PostMapping(value = "/updateUser")
+    public ResponseResult<Integer> updateUser(@Validated @RequestBody UserEditBody userBody) throws Exception {
+        log.info("[updateUser][user: {}]", userBody);
+        int rowCnt = userService.updateUser(userBody);
         return ResponseResult.success(rowCnt);
     }
 
+    @Operation(summary = "删除用户")
+    // @PreAuthorize("@el.check('user:del')")
+    @GetMapping(value = "/deleteUser/{userId}")
+    public ResponseResult<Integer> deleteUser(@Parameter @PathVariable(value = "userId") int userId) {
+        log.info("[deleteUser][userId: {}]", userId);
+        int rowCnt = userService.deleteUser(userId);
+        return ResponseResult.success(rowCnt);
+    }
 }
