@@ -51,34 +51,19 @@ public class SpringDocConfig {
         servers.add(new Server().url("http://localhost:8080").description("本地服务"));
         servers.add(new Server().url("http://localhost:8081").description("线上服务"));
 
-        // // 设置 spring security apikey accessToken 认证的请求头 X-Token: xxx.xxx.xxx
-        SecurityScheme securityScheme = new SecurityScheme()
-                .name("x-token")
-                .type(SecurityScheme.Type.APIKEY)
-                .description("APIKEY认证描述")
-                .in(SecurityScheme.In.HEADER);
-
         // 设置 spring security jwt accessToken 认证的请求头 Authorization: Bearer xxx.xxx.xxx
-        SecurityScheme securityScheme1 = new SecurityScheme()
+        SecurityScheme securityScheme = new SecurityScheme()
                 .name("JWT认证")
                 .scheme("bearer") // 如果是Http类型，Scheme是必填
                 .type(SecurityScheme.Type.HTTP)
-                .description("认证描述")
                 .in(SecurityScheme.In.HEADER)
                 .bearerFormat("JWT");
-
-        List<SecurityRequirement> securityRequirements = new ArrayList<>();
-
-        SecurityRequirement securityRequirement = new SecurityRequirement();
-        securityRequirement.addList("authScheme");
-
-        securityRequirements.add(securityRequirement);
 
         return new OpenAPI()
                 .info(info)
                 .servers(servers)
-                .components(new Components().addSecuritySchemes("authScheme", securityScheme1)) // 添加鉴权组件
-                .security(securityRequirements) // 全部添加鉴权小锁
+                .components(new Components().addSecuritySchemes("authScheme", securityScheme)) // 添加鉴权组件
+                .addSecurityItem(new SecurityRequirement().addList("authScheme")) // 全部添加鉴权小锁
                 .externalDocs(new ExternalDocumentation()); // 配置Swagger3.0描述信息
 
     }

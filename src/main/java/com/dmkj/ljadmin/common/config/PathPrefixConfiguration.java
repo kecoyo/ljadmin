@@ -13,7 +13,7 @@ public class PathPrefixConfiguration implements WebMvcConfigurer {
 
   @Override
   public void configurePathMatch(PathMatchConfigurer configurer) {
-    configurer.addPathPrefix("/api", c -> c.isAnnotationPresent(RestController.class));
+    // configurer.addPathPrefix("/api", c -> c.isAnnotationPresent(RestController.class));
   }
 
 }

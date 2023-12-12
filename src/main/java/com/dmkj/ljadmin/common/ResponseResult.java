@@ -71,38 +71,14 @@ public class ResponseResult<T> {
     }
 
     /**
-     * 成功返回（枚举参数）
+     * 成功返回（数据）
      *
-     * @param httpResponseEnum 枚举参数
-     * @param <T>              泛型
+     * @param data 数据
+     * @param <T>  泛型
      * @return {@link ResponseResult<T>}
      */
-    public static <T> ResponseResult<T> success(ResultCode httpResponseEnum) {
-        return response(httpResponseEnum.getCode(), httpResponseEnum.getMessage());
-    }
-
-    /**
-     * 成功返回（状态码+返回信息）
-     *
-     * @param code    状态码
-     * @param message 返回信息
-     * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
-     */
-    public static <T> ResponseResult<T> success(Integer code, String message) {
-        return response(code, message);
-    }
-
-    /**
-     * 成功返回（返回信息 + 数据）
-     *
-     * @param message 返回信息
-     * @param data    数据
-     * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
-     */
-    public static <T> ResponseResult<T> success(String message, T data) {
-        return response(ResultCode.SUCCESS.getCode(), message, data);
+    public static <T> ResponseResult<T> success(T data) {
+        return response(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }
 
     /**
@@ -116,28 +92,6 @@ public class ResponseResult<T> {
      */
     public static <T> ResponseResult<T> success(Integer code, String message, T data) {
         return response(code, message, data);
-    }
-
-    /**
-     * 成功返回（数据）
-     *
-     * @param data 数据
-     * @param <T>  泛型
-     * @return {@link ResponseResult<T>}
-     */
-    public static <T> ResponseResult<T> success(T data) {
-        return response(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
-    }
-
-    /**
-     * 成功返回（返回信息）
-     *
-     * @param message 返回信息
-     * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
-     */
-    public static <T> ResponseResult<T> success(String message) {
-        return response(ResultCode.SUCCESS.getCode(), message, null);
     }
 
     /**

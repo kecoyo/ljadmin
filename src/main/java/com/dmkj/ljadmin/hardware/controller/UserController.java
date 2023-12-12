@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dmkj.ljadmin.common.ResponseResult;
 import com.dmkj.ljadmin.common.ResultCode;
-import com.dmkj.ljadmin.common.exception.ApiException;
+import com.dmkj.ljadmin.common.utils.SecurityUtils;
 import com.dmkj.ljadmin.hardware.domain.User;
 import com.dmkj.ljadmin.hardware.domain.UserAddBody;
 import com.dmkj.ljadmin.hardware.domain.UserEditBody;
@@ -34,8 +37,21 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Operation(summary = "查询用户列表")
-    @PreAuthorize("@el.check('user:list')")
+    @Operation(summary = "获取当前登录用户名")
+    @GetMapping(value = "/getCurrentUsername")
+    public ResponseResult<String> getCurrentUsername(Authentication authentication) {
+        String username = authentication.getName();
+        return ResponseResult.success(username);
+    }
+
+    @Operation(summary = "获取当前登录用户")
+    @GetMapping(value = "/getCurrentUser")
+    public ResponseResult<UserDetails> getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
+        UserDetails user = SecurityUtils.getCurrentUser();
+        return ResponseResult.success(user);
+    }
+
+    @Operation(summary = "查询用户列表", security = {})
     @GetMapping(value = "/queryUserList")
     public ResponseResult<List<User>> queryUserList() {
         List<User> list = userService.queryUserList();
@@ -53,7 +69,7 @@ public class UserController {
     }
 
     @Operation(summary = "新增用户")
-    // @PreAuthorize("@el.check('user:add')")
+    @PreAuthorize("@el.check('user:add')")
     @PostMapping(value = "/addUser")
     public ResponseResult<Integer> addUser(@Validated @RequestBody UserAddBody userBody) throws Exception {
         log.info("[addUser][user: {}]", userBody);

@@ -9,11 +9,22 @@ server:
 spring:
   profiles:
     active: dev
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/eladmin?useSSL=false&characterEncoding=utf-8
     username: eladmin
     password: 123456
+
+  data:
+    redis:
+      host: 192.168.2.227
+      port: 6379
+      password: 123456
+      #数据库索引
+      database: 0
+      #连接超时时间
+      timeout: 5000
 
 mybatis:
   type-aliases-package: com.dmkj.ljadmin.dao
@@ -25,14 +36,28 @@ springdoc:
   swagger-ui:
     enabled: true
 
-application:
-  security:
-    jwt:
-      token-header: Authorization
-      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
-      expiration: 86400000 # a day
-      refresh-token:
-        expiration: 604800000 # 7 days
+jwt:
+  header: Authorization
+  # 令牌前缀
+  token-start-with: Bearer
+  # 必须使用最少88位的Base64对该令牌进行编码
+  base64-secret: ZmQ0ZGI5NjQ0MDQwY2I4MjMxY2Y3ZmI3MjdhN2ZmMjNhODViOTg1ZGE0NTBjMGM4NDA5NzYxMjdjOWMwYWRmZTBlZjlhNGY3ZTg4Y2U3YTE1ODVkZDU5Y2Y3OGYwZWE1NzUzNWQ2YjFjZDc0NGMxZWU2MmQ3MjY1NzJmNTE0MzI=
+  # 令牌过期时间 此处单位/毫秒 ，默认2小时，可在此网站生成 https://www.convertworld.com/zh-hans/time/milliseconds.html
+  token-validity-in-seconds: 7200000
+  # 在线用户key
+  online-key: "online-token:"
+  # 验证码
+  code-key: "captcha-code:"
+  # token 续期检查时间范围（默认30分钟，单位默认毫秒），在token即将过期的一段时间内用户操作了，则给用户的token续期
+  detect: 1800000
+  # 续期时间范围，默认 1小时，这里单位毫秒
+  renew: 3600000
+
+login:
+  user-cache:
+    key: "user-login-cache:"
+    # 存活时间/秒
+    idle-time: 21600
 
 service:
   baseurl:

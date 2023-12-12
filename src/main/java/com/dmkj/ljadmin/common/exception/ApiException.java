@@ -1,6 +1,8 @@
 package com.dmkj.ljadmin.common.exception;
 
-public class ApiException extends Exception {
+import cn.hutool.http.HttpStatus;
+
+public class ApiException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 

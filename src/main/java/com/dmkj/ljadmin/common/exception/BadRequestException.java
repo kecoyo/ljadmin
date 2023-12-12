@@ -1,8 +1,8 @@
-package com.dmkj.ljadmin.common;
-
-import org.springframework.http.HttpStatus;
+package com.dmkj.ljadmin.common.exception;
 
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 /**
  * 统一异常处理
@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 public class BadRequestException extends RuntimeException {
 
-    private Integer status = HttpStatus.BAD_REQUEST.value();
+    private Integer status = BAD_REQUEST.value();
 
     public BadRequestException(String msg) {
         super(msg);
