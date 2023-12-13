@@ -16,7 +16,7 @@ public class LoginUserDetails implements UserDetails {
 
     private UserDto user;
 
-    private List<Long> dataScopes;
+    private List<Integer> dataScopes;
 
     private List<AuthorityDto> authorities;
 

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Schema(description = "学校信息")
-public class SchoolInfo {
+public class School {
     @Schema(description = "学校ID")
     Integer id;
     @Schema(description = "学校名称")

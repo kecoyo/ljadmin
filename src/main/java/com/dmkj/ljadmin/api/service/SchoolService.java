@@ -3,7 +3,7 @@ package com.dmkj.ljadmin.api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dmkj.ljadmin.api.domain.SchoolInfo;
+import com.dmkj.ljadmin.api.domain.School;
 import com.dmkj.ljadmin.api.mapper.SchoolMapper;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class SchoolService {
     @Autowired
     private SchoolMapper schoolMapper;
 
-    public List<SchoolInfo> getSchoolList() {
+    public List<School> getSchoolList() {
         Integer province = 32;
         Integer city = 384;
         Integer county = 3407;
@@ -25,7 +25,7 @@ public class SchoolService {
         return schoolMapper.getSchoolList(province, city, county, phase, name, pageIndex, pageSize);
     }
 
-    public SchoolInfo getSchoolInfo(Integer id) {
+    public School getSchoolInfo(Integer id) {
         return schoolMapper.getSchoolInfo(id);
     }
 }

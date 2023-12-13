@@ -1,6 +1,6 @@
 package com.dmkj.ljadmin.api.controller;
 
-import com.dmkj.ljadmin.api.domain.SchoolInfo;
+import com.dmkj.ljadmin.api.domain.School;
 import com.dmkj.ljadmin.api.service.SchoolService;
 import com.dmkj.ljadmin.common.ResponseResult;
 
@@ -24,16 +24,16 @@ public class SchoolController {
 
     @RequestMapping(value = "/getSchoolList", method = RequestMethod.GET)
     @Operation(summary = "获取学校列表")
-    public ResponseResult<List<SchoolInfo>> getSchoolList() {
-        List<SchoolInfo> list = schoolService.getSchoolList();
+    public ResponseResult<List<School>> getSchoolList() {
+        List<School> list = schoolService.getSchoolList();
         return ResponseResult.success(list);
     }
 
     @RequestMapping(value = "/getSchoolInfo", method = RequestMethod.GET)
     @Operation(summary = "获取学校信息")
-    public ResponseResult<SchoolInfo> getSchoolInfo(
+    public ResponseResult<School> getSchoolInfo(
             @Validated @RequestParam("id") @Min(value = 1L, message = "学校ID必须大于0") Integer id) {
-        SchoolInfo schoolInfo = schoolService.getSchoolInfo(id);
+        School schoolInfo = schoolService.getSchoolInfo(id);
         return ResponseResult.success(schoolInfo);
     }
 

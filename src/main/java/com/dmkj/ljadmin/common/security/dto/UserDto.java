@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class UserDto implements Serializable {
 
-    private Long id;
+    private Integer id;
 
     private Set<RoleDto> roles;
 
