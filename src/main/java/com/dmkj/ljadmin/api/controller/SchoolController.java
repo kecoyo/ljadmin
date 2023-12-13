@@ -1,7 +1,7 @@
-package com.dmkj.ljadmin.business.controller;
+package com.dmkj.ljadmin.api.controller;
 
-import com.dmkj.ljadmin.business.domain.SchoolInfo;
-import com.dmkj.ljadmin.business.service.SchoolService;
+import com.dmkj.ljadmin.api.domain.SchoolInfo;
+import com.dmkj.ljadmin.api.service.SchoolService;
 import com.dmkj.ljadmin.common.ResponseResult;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/business/school")
+@RequestMapping("/api/school")
 @Tag(name = "学校接口")
 public class SchoolController {
 

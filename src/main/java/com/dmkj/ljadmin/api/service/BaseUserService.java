@@ -1,15 +1,15 @@
-package com.dmkj.ljadmin.hardware.service;
+package com.dmkj.ljadmin.api.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dmkj.ljadmin.api.domain.User;
+import com.dmkj.ljadmin.api.domain.dto.UserAddBody;
 import com.dmkj.ljadmin.common.ResultCode;
 import com.dmkj.ljadmin.common.exception.ApiException;
 import com.dmkj.ljadmin.common.utils.HttpClientResult;
 import com.dmkj.ljadmin.common.utils.HttpClientUtils;
-import com.dmkj.ljadmin.hardware.domain.User;
-import com.dmkj.ljadmin.hardware.domain.UserAddBody;
 
 import lombok.extern.slf4j.Slf4j;
 

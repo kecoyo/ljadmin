@@ -1,19 +1,19 @@
-package com.dmkj.ljadmin.hardware.service;
+package com.dmkj.ljadmin.api.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dmkj.ljadmin.api.domain.User;
+import com.dmkj.ljadmin.api.domain.dto.UserAddBody;
+import com.dmkj.ljadmin.api.domain.dto.UserEditBody;
+import com.dmkj.ljadmin.api.mapper.UserMapper;
 import com.dmkj.ljadmin.common.ResultCode;
 import com.dmkj.ljadmin.common.exception.ApiException;
-import com.dmkj.ljadmin.hardware.domain.User;
-import com.dmkj.ljadmin.hardware.domain.UserAddBody;
-import com.dmkj.ljadmin.hardware.domain.UserEditBody;
-import com.dmkj.ljadmin.hardware.mapper.UserMapper;
 
 @Service
-public class UserService {
+public class PartnerService {
 
     @Autowired
     private UserMapper userMapper;

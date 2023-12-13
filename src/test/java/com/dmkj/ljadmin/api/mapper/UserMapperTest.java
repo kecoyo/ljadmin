@@ -1,4 +1,4 @@
-package com.dmkj.ljadmin.hardware.dao;
+package com.dmkj.ljadmin.api.mapper;
 
 import java.util.List;
 
@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.dmkj.ljadmin.hardware.mapper.UserMapper;
-import com.dmkj.ljadmin.hardware.domain.User;
+import com.dmkj.ljadmin.api.domain.User;
 
+/**
+ * 用户信息 Mapper 测试类
+ */
 @SpringBootTest
 public class UserMapperTest {
 

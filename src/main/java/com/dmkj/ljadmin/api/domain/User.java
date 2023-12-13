@@ -1,4 +1,4 @@
-package com.dmkj.ljadmin.hardware.domain;
+package com.dmkj.ljadmin.api.domain;
 
 import java.util.Date;
 

@@ -22,7 +22,7 @@ public enum ResultCode {
     BAD_REQUEST(400, "参数错误"),
     UNAUTHORIZED(401, "未授权"),
     FORBIDDEN(403, "访问受限，授权过期"),
-    NOT_FOUND(404, "资源，服务未找！"),
+    NOT_FOUND(404, "资源，服务未找到！"),
     BAD_METHOD(405, "不允许的http方法"),
     CONFLICT(409, "资源冲突，或者资源被锁"),
     UNSUPPORTED_TYPE(415, "不支持的数据，媒体类型"),

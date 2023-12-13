@@ -7,7 +7,7 @@ import lombok.Data;
  * 响应结果集
  */
 @Data
-@Schema(name = "ResponseResult", description = "响应结果集")
+@Schema
 public class ResponseResult<T> {
 
     /**
@@ -25,7 +25,7 @@ public class ResponseResult<T> {
     /**
      * 数据
      */
-    @Schema(description = "数据")
+    @Schema
     private T data;
 
     /**

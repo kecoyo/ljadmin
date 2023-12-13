@@ -1,4 +1,4 @@
-package com.dmkj.ljadmin.hardware.controller;
+package com.dmkj.ljadmin.api.controller;
 
 import java.util.List;
 
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dmkj.ljadmin.api.domain.User;
+import com.dmkj.ljadmin.api.domain.dto.UserAddBody;
+import com.dmkj.ljadmin.api.domain.dto.UserEditBody;
+import com.dmkj.ljadmin.api.service.UserService;
 import com.dmkj.ljadmin.common.ResponseResult;
 import com.dmkj.ljadmin.common.ResultCode;
 import com.dmkj.ljadmin.common.utils.SecurityUtils;
-import com.dmkj.ljadmin.hardware.domain.User;
-import com.dmkj.ljadmin.hardware.domain.UserAddBody;
-import com.dmkj.ljadmin.hardware.domain.UserEditBody;
-import com.dmkj.ljadmin.hardware.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -30,45 +30,31 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/hardware/user")
-@Tag(name = "用户管理")
-public class UserController {
+@RequestMapping("/api/vendor")
+@Tag(name = "厂商管理")
+public class VendorController {
 
     @Autowired
     private UserService userService;
 
-    @Operation(summary = "获取当前登录用户名")
-    @GetMapping(value = "/getCurrentUsername")
-    public ResponseResult<String> getCurrentUsername(Authentication authentication) {
-        String username = authentication.getName();
-        return ResponseResult.success(username);
-    }
-
-    @Operation(summary = "获取当前登录用户")
-    @GetMapping(value = "/getCurrentUser")
-    public ResponseResult<UserDetails> getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
-        UserDetails user = SecurityUtils.getCurrentUser();
-        return ResponseResult.success(user);
-    }
-
-    @Operation(summary = "查询用户列表", security = {})
+    @Operation(summary = "查询厂商列表", security = {})
     @GetMapping(value = "/queryUserList")
     public ResponseResult<List<User>> queryUserList() {
         List<User> list = userService.queryUserList();
         return ResponseResult.success(list);
     }
 
-    @Operation(summary = "获取用户信息")
+    @Operation(summary = "获取厂商信息")
     @GetMapping(value = "/{userId}")
     public ResponseResult<User> getUserInfo(@Parameter @PathVariable(value = "userId") int userId) {
         User user = userService.getUserInfo(userId);
         if (user == null) {
-            return ResponseResult.fail(ResultCode.NOT_FOUND.getCode(), "用户不存在");
+            return ResponseResult.fail(ResultCode.NOT_FOUND.getCode(), "厂商不存在");
         }
         return ResponseResult.success(user);
     }
 
-    @Operation(summary = "新增用户")
+    @Operation(summary = "新增厂商")
     @PreAuthorize("@el.check('user:add')")
     @PostMapping(value = "/addUser")
     public ResponseResult<Integer> addUser(@Validated @RequestBody UserAddBody userBody) throws Exception {
@@ -77,7 +63,7 @@ public class UserController {
         return ResponseResult.success(userId);
     }
 
-    @Operation(summary = "修改用户")
+    @Operation(summary = "修改厂商")
     @PreAuthorize("@el.check('user:edit')")
     @PostMapping(value = "/updateUser")
     public ResponseResult<Integer> updateUser(@Validated @RequestBody UserEditBody userBody) throws Exception {
@@ -86,8 +72,8 @@ public class UserController {
         return ResponseResult.success(rowCnt);
     }
 
-    @Operation(summary = "删除用户")
-    // @PreAuthorize("@el.check('user:del')")
+    @Operation(summary = "删除厂商")
+    @PreAuthorize("@el.check('user:del')")
     @GetMapping(value = "/deleteUser/{userId}")
     public ResponseResult<Integer> deleteUser(@Parameter @PathVariable(value = "userId") int userId) {
         log.info("[deleteUser][userId: {}]", userId);

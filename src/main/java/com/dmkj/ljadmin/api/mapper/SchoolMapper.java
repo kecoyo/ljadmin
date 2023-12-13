@@ -1,11 +1,12 @@
-package com.dmkj.ljadmin.business.mapper;
+package com.dmkj.ljadmin.api.mapper;
 
-import com.dmkj.ljadmin.business.domain.SchoolInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.mapping.StatementType;
+
+import com.dmkj.ljadmin.api.domain.SchoolInfo;
 
 import java.util.List;
 

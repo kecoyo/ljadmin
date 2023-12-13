@@ -1,4 +1,4 @@
-package com.dmkj.ljadmin.hardware.mapper;
+package com.dmkj.ljadmin.api.mapper;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.mapping.StatementType;
 
-import com.dmkj.ljadmin.hardware.domain.User;
+import com.dmkj.ljadmin.api.domain.User;
 
 @Mapper
 public interface UserMapper {
