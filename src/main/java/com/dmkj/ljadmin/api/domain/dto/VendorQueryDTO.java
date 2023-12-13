@@ -4,8 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-@Schema(description = "硬件供应商的查询参数")
-public class ProviderQueryDTO {
+@Schema(description = "供应商的查询参数")
+public class VendorQueryDTO {
 
     @Schema(description = "供应商IDs", example = "1,2,3")
     private String ids = "";

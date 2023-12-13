@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-@Schema(description = "添加供应商的参数")
+@Schema(description = "硬件供应商的添加参数")
 public class ProviderAddDTO {
 
     @Schema(description = "供应商名称", example = "华为")

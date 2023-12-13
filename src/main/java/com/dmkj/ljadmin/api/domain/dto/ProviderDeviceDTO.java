@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-@Schema(description = "硬件供应商设备信息")
+@Schema(description = "硬件供应商的设备信息")
 public class ProviderDeviceDTO {
 
     @Schema(description = "设备ID", example = "0")
